@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git 'YOUR_GITHUB_REPO_LINK'
+                git 'https://github.com/ANIR369/tasktracker.git'
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
             emailext(
                 subject: 'Build Success',
                 body: 'Daily Task Tracker build successful.',
-                to: 'YOUR_EMAIL@gmail.com'
+                to: 'anirudhtemkar@gmail.com'
             )
         }
 
@@ -30,7 +30,7 @@ pipeline {
             emailext(
                 subject: 'Build Failed',
                 body: 'Pipeline failed.',
-                to: 'YOUR_EMAIL@gmail.com'
+                to: 'anirudhtemkar@gmail.com'
             )
         }
     }
