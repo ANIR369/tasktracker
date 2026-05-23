@@ -15,13 +15,14 @@ pipeline {
         success {
             emailext(
                 subject: 'Build Success',
-                body: ' Build completed successfully.
+                body: '''
+Build completed successfully.
 
 Project: Task Tracker
 
 Regards,
 Jenkins
-',
+''',
                 to: 'maazismail7705@gmail.com'
             )
         }
