@@ -5,7 +5,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/ANIR369/tasktracker.git'
+                git branch: 'main',
+                    url: 'https://github.com/ANIR369/tasktracker.git'
             }
         }
 
