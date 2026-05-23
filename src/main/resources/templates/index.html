@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            font-family:Arial;
+            background:#111;
+            color:white;
+        }
+
+        .container{
+            width:400px;
+            margin:100px auto;
+            background:#222;
+            padding:30px;
+            border-radius:15px;
+            text-align:center;
+            box-shadow:0 0 10px gray;
+        }
+
+        h1{
+            color:#00ff88;
+        }
+
+        input{
+            width:70%;
+            padding:10px;
+            border:none;
+            border-radius:5px;
+        }
+
+        button{
+            padding:10px 15px;
+            border:none;
+            border-radius:5px;
+            background:#00ff88;
+            cursor:pointer;
+            font-weight:bold;
+        }
+
+        ul{
+            list-style:none;
+            padding:0;
+        }
+
+        li{
+            background:#333;
+            margin-top:10px;
+            padding:10px;
+            border-radius:5px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Task Tracker</h1>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList"></ul>
+
+</div>
+
+<script>
+
+    function addTask(){
+
+        let input = document.getElementById("taskInput");
+
+        let task = input.value;
+
+        if(task === ""){
+            alert("Enter a task");
+            return;
+        }
+
+        let li = document.createElement("li");
+
+        li.textContent = task;
+
+        document.getElementById("taskList").appendChild(li);
+
+        input.value = "";
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Task Tracker</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 450px;
+            background: #1f2937;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            background: #2563eb;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #374151;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+        }
+
+        .delete-btn:hover {
+            background: #b91c1c;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Daily Task Tracker</h1>
+
+    <div class="input-section">
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+</div>
+
+<script>
+
+    async function loadTasks() {
+
+        let response = await fetch('/tasks');
+
+        let tasks = await response.json();
+
+        let taskList = document.getElementById('taskList');
+
+        taskList.innerHTML = '';
+
+        tasks.forEach((task, index) => {
+
+            let li = document.createElement('li');
+
+            li.innerHTML = `
+                <span>${task}</span>
+                <button class="delete-btn" onclick="deleteTask(${index})">Delete</button>
+            `;
+
+            taskList.appendChild(li);
+        });
+    }
+
+    async function addTask() {
+
+        let taskInput = document.getElementById('taskInput');
+
+        let task = taskInput.value;
+
+        if(task === '') {
+            alert('Please enter a task');
+            return;
+        }
+
+        await fetch(`/add?task=${task}`);
+
+        taskInput.value = '';
+
+        loadTasks();
+    }
+
+    async function deleteTask(index) {
+
+        await fetch(`/delete?index=${index}`);
+
+        loadTasks();
+    }
+
+    loadTasks();
+
+</script>
+
+</body>
+</html>
