@@ -1,20 +1,27 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven'
+    }
+
     stages {
 
-HEAD
-
-        stage('Clone') {
+        stage('Checkout') {
             steps {
-                git 'YOUR_GITHUB_REPO_LINK'
+                git 'https://github.com/ANIR369/tasktracker.git'
             }
         }
 
- 10ceb7a (added jenkins pipeline)
         stage('Build') {
             steps {
                 sh 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
             }
         }
     }
@@ -24,7 +31,6 @@ HEAD
         success {
             emailext(
                 subject: 'Build Success',
- HEAD
                 body: '''
 Build completed successfully.
 
@@ -34,22 +40,21 @@ Regards,
 Jenkins
 ''',
                 to: 'maazismail7705@gmail.com'
-
-                body: 'Daily Task Tracker build successful.',
-                to: 'YOUR_EMAIL@gmail.com'
- 10ceb7a (added jenkins pipeline)
             )
         }
 
         failure {
             emailext(
                 subject: 'Build Failed',
-                body: 'Pipeline failed.',
- HEAD
-                to: 'maazismail7705@gmail.com'
+                body: '''
+Build failed.
 
-                to: 'YOUR_EMAIL@gmail.com'
- 10ceb7a (added jenkins pipeline)
+Please check Jenkins console output.
+
+Regards,
+Jenkins
+''',
+                to: 'maazismail7705@gmail.com'
             )
         }
     }
