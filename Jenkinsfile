@@ -16,7 +16,7 @@ pipeline {
             emailext(
                 subject: 'Build Success',
                 body: 'Task Tracker build successful.',
-                to: 'anirudhtemkar@gmail.com'
+                to: 'maazismail7705@gmail.com'
             )
         }
 
@@ -24,7 +24,7 @@ pipeline {
             emailext(
                 subject: 'Build Failed',
                 body: 'Pipeline failed.',
-                to: 'anirudhtemkar@gmail.com'
+                to: 'maazismail7705@gmail.com'
             )
         }
     }
