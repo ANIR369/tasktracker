@@ -36,7 +36,7 @@ Project: Task Tracker
 Regards,
 Jenkins
 ''',
-                to: 'maazismail7705@gmail.com'
+                to: 'moahmmedibrahim3139@gmail.com'
             )
         }
 
@@ -51,7 +51,7 @@ Please check Jenkins console output.
 Regards,
 Jenkins
 ''',
-                to: 'maazismail7705@gmail.com'
+                to: 'moahmmedibrahim@gmail.com'
             )
         }
     }
